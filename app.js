@@ -162,6 +162,17 @@ title:{
 notes.displayall();
     }
   });
+  //=========================================================================================
+  yargs.command({
+    command:'content',
+    describe:'Only content',
+   
+    handler(){
+notes.conty();
+    }
+  });
+
+
   //---------------------------------------Delete all  Notes----------------------------
   yargs.command({
     command:'delete',

@@ -2,7 +2,7 @@ const  fs = require('fs');
 const chalk = require('chalk');
 const { title } = require('process');
 
-console.log("Notes js");
+// console.log("Notes js");
 
 
   // "type":"module",
@@ -96,7 +96,22 @@ const displayall=()=>{
 
   })
 }
+//============================================================================================
+//-------------------------------------------Show only content-----------------------------------------
+const conty=()=>{
+  console.log(chalk.bgGreenBright('Your Notes'));
+  console.log(chalk.white('--------------------'));
+const list =loadNotes();
 
+const title=list.forEach((tit,i)=>{
+const topi=tit.body;
+// const tite=topi.replace("=",'');
+console.log(chalk.bgCyan(`Content${i+1}`),chalk.magenta('-'),chalk.bgYellow(`${topi}`));
+console.log(chalk.white('--------------------'));
+// return tit.title;
+});
+}
+//==================================================================================================
 //------------------------------Delete All notes --------------------
 const delall=()=>{
   try {
@@ -106,17 +121,18 @@ const delall=()=>{
     console.error(chalk.red.inverse('Error deleting notes:', error.message));
   }
 }
+//==============================================================================================
 
 
+//-------------------------------------------General Functions---------------------------------------------
 
-//-------------------General Functions--------------
-  //SaveNotes
+  //---------------------------------------------SaveNotes-----------------------------------------------
 const savedNotes=function(notes){
 const datajson=JSON.stringify(notes);
  fs.writeFileSync('notes.json',datajson);
 }
 
-  //Load Notes Function 
+  //--------------------------------------------Load Notes Function ------------------------
   const  loadNotes =function(){
     try{
 const  dataBuffer=fs.readFileSync('notes.json');
@@ -134,5 +150,6 @@ catch(e){
     removenote:removenote,
     readNotes:readNotes,
     displayall:displayall,
-    delall:delall
+    delall:delall,
+    conty:conty
   }
